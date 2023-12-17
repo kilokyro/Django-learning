@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+
+    <ol>
+        {% for i in range %}<li>{{ item }}</li>{% endfor %}
+ 
+    </ol>
+
+    {% if show %}
+        <p>
+            <h1>｡:.ﾟヽ(*´∀`)ﾉﾟ.:｡</h1>
+        </p>
+    {% endif %}
+
+{% endblock %}

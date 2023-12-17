@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+
+    {% for i in  range %}
+        <h1>
+            welcome here!{{ name }},
+            <br>
+            ｡:.ﾟヽ(*´∀`)ﾉﾟ.:｡
+        </h1>
+    {% endfor %}
+
+
+    <form action="" method="get">
+        <p>
+            <input type="text" placeholder="name" name="name">
+        </p>
+        <p>
+            <input type="number" placeholder="repeat" name="repeat">
+        </p>
+        <p>
+            <button type="submit">Send</button>
+        </p>
+    </form>
+
+{% endblock %}
