@@ -1,8 +1,10 @@
-{% extends "base.html" %}
+{% extends "first_base.html" %}
 
-{% block body %}
+{% block title %}List-item{% endblock %}
 
+{% block first_body %}
 
+    {% include "first/_welcome.html" %}
     <ol>
         {% for i in range %}<li>{{ item }}</li>{% endfor %}
  
@@ -13,5 +15,7 @@
             <h1>｡:.ﾟヽ(*´∀`)ﾉﾟ.:｡</h1>
         </p>
     {% endif %}
+
+
 
 {% endblock %}

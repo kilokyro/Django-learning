@@ -1,6 +1,7 @@
-{% extends "./../../../../templates/base.html" %}
+{% extends "first_base.html" %}
+{% block title %}List-item{% endblock %}
 
-{% block body %}
+{% block first_body %}
     <h1>welcome here!{{ name }}</h1>
 
     <form action="" method="post">
@@ -12,4 +13,6 @@
             <button type="submit">Send</button>
         </p>
     </form>
+
+    {% include "first/_welcome.html" %}
 {% endblock %}

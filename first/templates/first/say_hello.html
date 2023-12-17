@@ -1,8 +1,6 @@
-{% extends "base.html" %}
-
-{% block body %}
-
-
+{% extends "first_base.html" %}
+{% block title %}say-hello{% endblock %}
+{% block first_body %}
     {% for i in  range %}
         <h1>
             welcome here!{{ name }},
@@ -11,7 +9,7 @@
         </h1>
     {% endfor %}
 
-
+    {% include "first/_welcome.html" %}
     <form action="" method="get">
         <p>
             <input type="text" placeholder="name" name="name">

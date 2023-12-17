@@ -1,6 +1,6 @@
-{% extends "base.html" %}
-
-{% block body %}
+{% extends "first_base.html" %}
+{% block title %}repeat{% endblock %}
+{% block first_body %}
 
     <h1>{{ Content }}</h1>
     <ol>
@@ -8,5 +8,5 @@
         <li>{{ Times }}</li>
         <li>{{ Content }}</li>
     </ol>
-
+    {% include "first/_welcome.html" %}
 {% endblock %}
