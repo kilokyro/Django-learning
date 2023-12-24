@@ -17,7 +17,18 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from first.views import hello_world, list_item, list_post, repeat, say_hello, say_hi
+from first.views import (
+    create_post,
+    delete_post,
+    get_post,
+    hello_world,
+    list_item,
+    list_post,
+    repeat,
+    say_hello,
+    say_hi,
+    update_post,
+)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -26,5 +37,9 @@ urlpatterns = [
     path("repeat/<str:content>/<int:times>/", repeat),
     path("list-item/<str:item>/<int:times>/", list_item),
     path("say-hi/", say_hi),
-    path("list-post/", list_post),
+    path("posts/", list_post, name="list_post"),
+    path("posts/<int:pk>/", get_post, name="get_post"),
+    path("posts/create/", create_post, name="create_post"),
+    path("posts/<int:pk>/update/", update_post, name="update_post"),
+    path("posts/<int:pk>/delete/", delete_post, name="delete_post"),
 ]

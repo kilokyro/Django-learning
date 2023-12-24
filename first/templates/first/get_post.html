@@ -1,0 +1,33 @@
+{% extends "first_base.html" %}
+
+{% block title %}Get_Post{% endblock %}
+
+{% block first_body %}
+
+    {% include "first/_welcome.html" %}
+    <ul>
+        <li>{{ post.title }} by {{ post.author }}</li>
+        <br>
+
+        <h1>The Content may be written in Kingon Language:</h1>
+        <br>
+        <h2>{{ post.content|linebreaksbr }}</h2>
+    </ul>
+
+    <h3>
+        <a href="{% url "list_post" %}"> << Back to the Article List</a>
+        &nbsp&nbsp&nbsp
+        <a href="{% url "update_post" pk=post.id %}">Edit this Article >></a>
+        &nbsp&nbsp&nbsp
+        <a href="{% url "delete_post" pk=post.id %}">Delete this Article >></a>
+    </h3>
+
+    {% if show %}
+        <p>
+            <h1>｡:.ﾟヽ(*´∀`)ﾉﾟ.:｡   SHOW!!!</h1>
+        </p>
+    {% endif %}
+
+
+
+{% endblock %}

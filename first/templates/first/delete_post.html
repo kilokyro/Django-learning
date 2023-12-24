@@ -1,0 +1,26 @@
+{% extends "first_base.html" %}
+
+{% block title %}Delete-Post{% endblock %}
+
+{% block first_body %}
+
+    {% include "first/_welcome.html" %}
+    <ul>
+ 
+        <h1>The Starship USS Enterprise is ready to RUN-AWAY from here!!</h1>
+ 
+        {% include "first/_form_post.html" with submit_value="Delete Post" %}
+
+        <a href="{% url "list_post" %}"> << Back to the Article List</a>
+ 
+        {% comment "" %}
+        <form action="" method="post">
+            {% csrf_token %}
+            
+            {{ form.as_p }}
+            
+            <button type="submit">Send</button>
+        </form>
+        {% endcomment %}
+ 
+    {% endblock %}

@@ -5,16 +5,33 @@
 {% block first_body %}
 
     {% include "first/_welcome.html" %}
-    <ul>
-        {% for post in posts %}<li>{{ post.title }} by {{ post.author }}</li>{% endfor %}
-    </ul>
 
-    {% if show %}
-        <p>
-            <h1>｡:.ﾟヽ(*´∀`)ﾉﾟ.:｡</h1>
-        </p>
-    {% endif %}
+ 
+    <h1>USE your Force, Captain Hermanine</h1>
+
+    <a href=" {% url "create_post" %}">
+        <h3>
+            Create a Post !
+            <h3>
+            </a>
+ 
+            <ul>
+                {% for post in posts %}
+                    <li>
+                        <!-- <a href="/posts/{{ post.pk }}">{{ post.title }}</a> by <a href="/posts/{{ post.pk }}">{{ post.author }}</a> -->
+                        <a href="{% url "get_post" pk=post.id %}">{{ post.title }}</a> by <a href="{% url "get_post" pk=post.id %}">{{ post.author }}</a>
+                    </li>
+                {% empty %}
+                    <h1>(☉_☉) (☉_☉) (☉_☉) No Article Found in Database  (☉_☉) (☉_☉) (☉_☉) (☉_☉) (☉_☉)</h1>
+                {% endfor %}
+            </ul>
+
+            {% if show %}
+                <p>
+                    <h1>｡:.ﾟヽ(*´∀`)ﾉﾟ.:｡   SHOW!!!</h1>
+                </p>
+            {% endif %}
 
 
 
-{% endblock %}
+        {% endblock %}

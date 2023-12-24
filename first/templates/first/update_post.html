@@ -1,0 +1,27 @@
+{% extends "first_base.html" %}
+
+{% block title %}Update-Post{% endblock %}
+
+{% block first_body %}
+
+    {% include "first/_welcome.html" %}
+    <ul>
+ 
+        <h1>This is better than Wand to FIX your Problem!!</h1>
+ 
+        {% include "first/_form_post.html" with submit_value="Update Post" %}
+
+        <a href="{% url "list_post" %}"> << Back to the Article List</a>
+
+ 
+        {% comment "" %}
+        <form action="" method="post">
+            {% csrf_token %}
+            
+            {{ form.as_p }}
+            
+            <button type="submit">Send</button>
+        </form>
+        {% endcomment %}
+ 
+    {% endblock %}

@@ -3,9 +3,19 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{% block title %}Django Project-base{% endblock %}</title>
+        <title>
+            {% block title %}Django Project-base{% endblock %}
+        </title>
     </head>
     <body>
+        {% if messages %}
+            <h7>
+            Hint
+            </h7>
+            {% for message in messages %}<h6>{{ message.level }} |{{ message }}</h6>{% endfor %}
+            <h1>END of HINT!!</h1>
+        {% endif %}
+
         {% block body %}{% endblock %}
     </body>
 </html>

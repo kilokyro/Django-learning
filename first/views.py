@@ -1,6 +1,8 @@
+from django.contrib import messages
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, redirect, render
 
+from first.forms import PostDeleteConfirmForm, PostForm
 from first.models import Post
 
 
@@ -56,5 +58,65 @@ def list_post(request):
     return render(
         request,
         "first/list_post.html",
-        {"posts": posts},
+        {
+            "posts": posts,
+            "show": request.GET.get("show", "") == "true",
+        },
+    )
+
+
+def get_post(request, pk):
+    # post = Post.objects.get(id=pk)
+    post = get_object_or_404(Post, id=pk)
+    return render(
+        request,
+        "first/get_post.html",
+        {
+            "post": post,
+        },
+    )
+
+
+def create_post(request):
+    form = PostForm(request.POST or None)
+    if form.is_valid():
+        # post = Post.objects.create(**form.cleaned_data)
+        post = form.save()
+        messages.success(request, "Create Success")
+        return redirect("get_post", pk=post.id)
+
+    return render(
+        request,
+        "first/create_post.html",
+        {"form": form},
+    )
+
+
+def update_post(request, pk):
+    post = get_object_or_404(Post, id=pk)
+    form = PostForm(request.POST or None, instance=post)
+    if form.is_valid():
+        post = form.save()
+        messages.success(request, "Update Success")
+        return redirect("get_post", pk=post.id)
+
+    return render(
+        request,
+        "first/update_post.html",
+        {"form": form},
+    )
+
+
+def delete_post(request, pk):
+    post = get_object_or_404(Post, id=pk)
+    form = PostDeleteConfirmForm(request.POST or None)
+    if form.is_valid():
+        post.delete()
+        messages.success(request, "Delete Success")
+        return redirect("list_post")
+
+    return render(
+        request,
+        "first/delete_post.html",
+        {"form": form},
     )
