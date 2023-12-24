@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from first.views import hello_world, list_item, repeat, say_hello, say_hi
+from first.views import hello_world, list_item, list_post, repeat, say_hello, say_hi
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -26,4 +26,5 @@ urlpatterns = [
     path("repeat/<str:content>/<int:times>/", repeat),
     path("list-item/<str:item>/<int:times>/", list_item),
     path("say-hi/", say_hi),
+    path("list-post/", list_post),
 ]
