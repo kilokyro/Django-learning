@@ -13,3 +13,16 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Comment(models.Model):
+    content = models.TextField()
+    post = models.ForeignKey(Post, on_delete=models.PROTECT)
+
+
+"""
+models.PROTECT
+models.CASCADE
+models.SET_NULL
+models.SET_DEFAULT
+"""
