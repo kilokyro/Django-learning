@@ -16,18 +16,18 @@
             <br>
             is_finished: {{ task.is_finish }}
         </li>
-        with tags: {{ task.tags }}
+        with tags: {{ task.tags.all|join:"," }}
         <br>
  
     </ul>
 
 
     <h3>
-        <a href="{% url "task_list" %}"> << Back to the todo List</a>
+        <a href="{% url "todo:task_list" %}"> << Back to the todo List</a>
         &nbsp&nbsp&nbsp
-        <a href="{% url "task_update" pk=task.pk %}">Edit this Task >></a>
+        <a href="{% url "todo:task_update" pk=task.pk %}">Edit this Task >></a>
         &nbsp&nbsp&nbsp
-        <a href="{% url "task_delete" pk=task.pk %}">Delete this Task >></a>
+        <a href="{% url "todo:task_delete" pk=task.pk %}">Delete this Task >></a>
     </h3>
 
 

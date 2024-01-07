@@ -8,7 +8,7 @@ from todo.models import Task
 
 
 def task_list(request):
-    tasks = Task.objects.all()
+    tasks = Task.objects.select_related("project").prefetch_related("tags")
     return render(
         request,
         "todo/task_list.html",
@@ -32,7 +32,7 @@ def task_create(request):
 
 
 def task_retrieve(request, pk):
-    task = get_object_or_404(Task, pk=pk)
+    task = get_object_or_404(Task.objects.prefetch_related("tags"), pk=pk)
     return render(
         request,
         "todo/task_retrieve.html",

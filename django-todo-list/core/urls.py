@@ -15,15 +15,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-
-from todo.views import task_create, task_delete, task_list, task_retrieve, task_update
+from django.urls import include, path
+from django.views.generic import RedirectView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("todo/tasks/", task_list, name="task_list"),
-    path("todo/tasks/create/", task_create, name="task_create"),
-    path("todo/tasks/<int:pk>", task_retrieve, name="task_retrieve"),
-    path("todo/tasks/<int:pk>/update/", task_update, name="task_update"),
-    path("todo/tasks/<int:pk>/delete/", task_delete, name="task_delete"),
+    path("todo/", include("todo.urls")),
+    path("", RedirectView.as_view(pattern_name="todo:task_list"), name="home"),
 ]

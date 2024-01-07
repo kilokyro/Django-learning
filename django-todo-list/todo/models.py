@@ -3,7 +3,18 @@ from django.db import models
 
 # Create your models here.
 class Project(models.Model):
+    class Status(models.TextChoices):
+        Planning = "P", "Planning"
+        Block = "B", "Block"
+        Doing = "D", "Doing"
+        Finish = "F", "Finish"
+
     name = models.CharField(max_length=255, unique=True)
+    status = models.CharField(
+        max_length=1,
+        choices=Status.choices,
+        default=Status.Planning,
+    )
 
     def __str__(self):
         return self.name

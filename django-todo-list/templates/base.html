@@ -1,3 +1,5 @@
+{% load django_bootstrap5 %}
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -6,14 +8,21 @@
         <title>
             {% block title %}Django todo-List base{% endblock %}
         </title>
+        {% bootstrap_css %}
     </head>
     <body>
-        {% if messages %}
-            <h3>Hint</h3>
-            {% for message in messages %}<h1>{{ message.level }} |{{ message }}</h1>{% endfor %}
-            <h3>END of HINT!!</h3>
+        <div class="container my-2">
+            {% comment "" %} {% if messages %} <h3>
+Hint</h3>
+        {% for message in messages %}<h1>{{ message.level }} |{{ message }}</h1>{% endfor %}
+        <h3>END of HINT!!</h3>
         {% endif %}
+            {% endcomment %}
 
-        {% block body %}{% endblock %}
+            {% bootstrap_messages %}
+
+            {% block body %}{% endblock %}
+        </div>
+        {% bootstrap_javascript %}
     </body>
 </html>

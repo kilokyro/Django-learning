@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # 3rd Party apps
     "django_extensions",
+    "django_bootstrap5",
     # Local apps
     "todo",
 ]
