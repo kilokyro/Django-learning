@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect, render
 
-from todo.forms import PostDeleteConfirmForm, TaskForm
+from todo.forms import TaskDeleteConfirmForm, TaskForm
 from todo.models import Task
 
 # Create your views here.
@@ -22,7 +22,7 @@ def task_create(request):
         # post = Post.objects.create(**form.cleaned_data)
         task = form.save()
         messages.success(request, "Create Success")
-        return redirect("task_retrieve", pk=task.id)
+        return redirect("task_retrieve", pk=task.pk)
 
     return render(
         request,
@@ -46,7 +46,7 @@ def task_update(request, pk):
     if form.is_valid():
         task = form.save()
         messages.success(request, "Update Success")
-        return redirect("task_retrieve", pk=task.id)
+        return redirect("task_retrieve", pk=task.pk)
 
     return render(
         request,
@@ -57,7 +57,7 @@ def task_update(request, pk):
 
 def task_delete(request, pk):
     task = get_object_or_404(Task, pk=pk)
-    form = PostDeleteConfirmForm(request.POST or None)
+    form = TaskDeleteConfirmForm(request.POST or None)
     if form.is_valid():
         task.delete()
         messages.success(request, "Delete Success")

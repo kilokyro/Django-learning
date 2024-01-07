@@ -9,7 +9,7 @@ class TaskForm(forms.ModelForm):
         fields = "__all__"
 
 
-class PostDeleteConfirmForm(forms.Form):
+class TaskDeleteConfirmForm(forms.Form):
     check = forms.BooleanField(
         required=True,
         label="Make sure you wanna CLEAN YOUR ASSS!!!!",
