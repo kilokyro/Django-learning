@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+            {% block title %}Django todo-List base{% endblock %}
+        </title>
+    </head>
+    <body>
+        {% if messages %}
+            <h3>Hint</h3>
+            {% for message in messages %}<h1>{{ message.level }} |{{ message }}</h1>{% endfor %}
+            <h3>END of HINT!!</h3>
+        {% endif %}
+
+        {% block body %}{% endblock %}
+    </body>
+</html>

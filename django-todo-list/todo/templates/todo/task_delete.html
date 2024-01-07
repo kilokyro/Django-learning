@@ -1,0 +1,16 @@
+{% extends "todo_base.html" %}
+
+{% block title %}Delete a task in TODOLIST{% endblock %}
+
+{% block todo_body %}
+
+
+    <h1>The Starship USS Enterprise is ready to RUN-AWAY from here!!</h1>
+ 
+    {% include "todo/_form_post.html" with submit_value="Delete Task" %}
+
+    <a href="{% url "task_list" %}"> << Back to the todo List</a>
+
+
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "todo_base.html" %}
+
+{% block title %}List of TODOLIST{% endblock %}
+
+{% block todo_body %}
+
+<h1>USE your Force, Captain Hermanine</h1>
+
+<a href=" {% url "task_create" %}">
+    <h3>
+        Create a Task !
+        <h3>
+        </a>
+
+<h1>OR Choose from Below MAGICS!!!</h1>       
+
+
+<ol>
+    {% for i in tasks %}
+    <li> 
+        <a href="{% url "task_retrieve" pk=i.pk %}">{{ i.title }}</a> belongs to {{ i.project }}
+    {% empty %}
+        <h1>(☉_☉) (☉_☉) (☉_☉) No Article Found in Database  (☉_☉) (☉_☉) (☉_☉) (☉_☉) (☉_☉)</h1>
+    </li>
+    {% endfor %}
+    
+
+</ol>
+
+{% endblock %}

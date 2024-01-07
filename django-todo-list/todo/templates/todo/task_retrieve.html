@@ -1,0 +1,34 @@
+{% extends "todo_base.html" %}
+
+{% block title %}Task_retrieve{% endblock %}
+
+{% block todo_body %}
+    <h1>The Content may be written in Klingon Language:</h1>
+    <br>
+    <br>
+
+    <ul>
+        <li>
+            Title:{{ task.title }}  is belong to {{ task.project }}
+            <br>
+            Content of this task:
+            <h2>{{ task.content|linebreaksbr }}</h2>
+            <br>
+            is_finished: {{ task.is_finish }}
+        </li>
+        with tags: {{ task.tags }}
+        <br>
+ 
+    </ul>
+
+
+    <h3>
+        <a href="{% url "task_list" %}"> << Back to the todo List</a>
+        &nbsp&nbsp&nbsp
+        <a href="{% url "task_update" pk=task.pk %}">Edit this Task >></a>
+        &nbsp&nbsp&nbsp
+        <a href="{% url "task_delete" pk=task.pk %}">Delete this Task >></a>
+    </h3>
+
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "todo_base.html" %}
+
+{% block title %}Update a task in TODOLIST{% endblock %}
+
+{% block todo_body %}
+
+
+    <h1>This is better than Wand to FIX your Problem!!</h1>
+ 
+    {% include "todo/_form_post.html" with submit_value="Update Task" %}
+
+    <a href="{% url "task_list" %}"> << Back to the todo List</a>
+
+
+
+{% endblock %}

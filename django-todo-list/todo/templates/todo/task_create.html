@@ -1,0 +1,20 @@
+{% extends "todo_base.html" %}
+
+{% block title %}Create a task in TODOLIST{% endblock %}
+
+{% block todo_body %}
+    <ul>
+ 
+        <h1>
+            You shall not PASSS!! Harry!!
+            <br>
+            Unless you finish below!!!!
+        </h1>
+
+        {% include "todo/_form_post.html" with submit_value="Create Task" %}
+
+        <a href="{% url "task_list" %}"> << Back to the todo List</a>
+
+
+
+    {% endblock %}
