@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "django_bootstrap5",
     # Local apps
     "todo",
+    "users",
 ]
 
 MIDDLEWARE = [
@@ -129,3 +130,14 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+# Auth
+
+LOGIN_URL = "users:login"
+LOGIN_REDIRECT_URL = "todo:task_list"
+LOGOUT_REDIRECT_URL = "todo:task_list"
+
+# Email settings
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"

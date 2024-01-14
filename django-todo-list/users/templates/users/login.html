@@ -1,0 +1,11 @@
+{% extends "user_base.html" %}
+
+{% block title %}Login Page{% endblock %}
+
+{% block user_body %}
+
+    <h2>Say My Name!!</h2>
+    {% include "users/_form_post.html" with submit_value="login" %}
+    <h2>Forget your name??</h2>
+    <a href="{% url "users:password_reset_request" %}" class="btn btn-info">Reset Your Password</a>
+{% endblock %}

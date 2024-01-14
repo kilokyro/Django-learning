@@ -21,5 +21,6 @@ from django.views.generic import RedirectView
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("todo/", include("todo.urls")),
+    path("users/", include("users.urls")),
     path("", RedirectView.as_view(pattern_name="todo:task_list"), name="home"),
 ]

@@ -16,6 +16,11 @@ class Project(models.Model):
         default=Status.Planning,
     )
 
+    class Meta:
+        permissions = [
+            ("archive_project", "Can archive project"),
+        ]
+
     def __str__(self):
         return self.name
 

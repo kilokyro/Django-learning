@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth import decorators as auth_decorators
 from django.shortcuts import get_object_or_404, redirect, render
 
 from todo.forms import TaskDeleteConfirmForm, TaskForm
@@ -8,15 +9,27 @@ from todo.models import Task
 
 
 def task_list(request):
+    if not request.user.is_authenticated:
+        messages.info(request, "Login to have access to more functions!")
+
     tasks = Task.objects.select_related("project").prefetch_related("tags")
-    return render(
-        request,
-        "todo/task_list.html",
-        {"tasks": tasks},
-    )
+    request.session["BBB"] = "CCC"
+
+    response = render(request, "todo/task_list.html", {"tasks": tasks})
+    response.set_cookie("AAA", "BBB")
+    return response
+
+    # return render(
+    #     request,
+    #     "todo/task_list.html",
+    #     {"tasks": tasks},
+    # )
 
 
+@auth_decorators.login_required
 def task_create(request):
+    print(request.session.get("BBB"))
+    print(request.COOKIES)
     form = TaskForm(request.POST or None)
     if form.is_valid():
         # post = Post.objects.create(**form.cleaned_data)
