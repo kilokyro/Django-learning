@@ -17,6 +17,6 @@ class tagAdmin(admin.ModelAdmin):
 
 @admin.register(Task)
 class taskAdmin(admin.ModelAdmin):
-    list_display = ("content", "is_finish")
+    list_display = ("content", "status")  # "is_finish"
     search_fields = ("title", "content")
-    list_filter = ("is_finish", "project", "tags")
+    list_filter = ("status", "project", "tags")  # "is_finish"

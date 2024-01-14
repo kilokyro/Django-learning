@@ -7,20 +7,45 @@
     <br>
     <br>
 
-    <ul>
-        <li>
-            Title:{{ task.title }}  is belong to {{ task.project }}
-            <br>
-            Content of this task:
-            <h2>{{ task.content|linebreaksbr }}</h2>
-            <br>
-            is_finished: {{ task.is_finish }}
-        </li>
-        with tags: {{ task.tags.all|join:"," }}
-        <br>
- 
-    </ul>
 
+    <div class="card" style="width: 36rem;">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+            <h4 class="card-header bg-secondary bg-gradient text-white">{{ task.title }}</h4>
+            <p class="card-text">
+                Content :
+                <br>
+                <div class="row">
+                    <div class="col bg-info bg-gradient bg-opacity-25 mx-4">{{ task.content|linebreaksbr }}</div>
+                </div>
+            </p>
+            <p class="card-status">
+                <small class="text-muted">Task status: {{ task.get_status_display }}</small>
+                <br>
+                belong to {{ task.project }}
+                <small class="text-muted">{{ task.project.get_status_display }}</small>
+            </p>
+            <div class="card-footer bg-transparent border-primary">
+                <small>tags:{{ task.tags.all|join:"," }}</small>
+            </div>
+        </div>
+    </div>
+    {% comment "" %}
+<ul>
+    <li>
+        Title:{{ task.title }}  is belong to {{ task.project }}
+        <br>
+        Content of this task:
+        <h2>{{ task.content|linebreaksbr }}</h2>
+        <br>
+        Task status: {{ task.get_status_display }}
+    </li>
+    with tags: {{ task.tags.all|join:"," }}
+    <br>
+    
+</ul>
+
+    {% endcomment %}
 
     <h3>
         <a href="{% url "todo:task_list" %}"> << Back to the todo List</a>

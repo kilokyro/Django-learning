@@ -4,27 +4,79 @@
 
 {% block todo_body %}
 
-    <h1>USE your Force, Captain Hermanine</h1>
+    <div class="row">
+        <div class="col">
+            <h1>
+                USE your Force, Captain Hermanine
+                <a href=" {% url "todo:task_create" %}" class="btn btn-outline-primary">Create a Task!</a>
+            </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h1>OR Choose from Below MAGICS!!!</h1>
+        </div>
+    </div>
 
+ 
+    {% comment "" %}
+    <button type="button" class="btn btn-outline-primary">Create a Task!</button> </h1>
+    
     <a href=" {% url "todo:task_create" %}">
         <h3>
             Create a Task !
             <h3>
             </a>
-
+            
             <h1>OR Choose from Below MAGICS!!!</h1>
+            
+            
+    {% endcomment %}
 
+    <div class="card-group">
+        {% for i in tasks %}
+ 
+            <div class="card" style="width: 18rem;">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h4 class="card-header">{{ i.title }}</h4>
+                    <p class="card-text">{{ i.content }}</p>
+                    <p class="card-status">
+                        <small class="text-muted">Project Status:{{ i.project.get_status_display }}</small>
+                    </p>
+                    <a href="{% url "todo:task_retrieve" pk=i.pk %}" class="btn btn-primary">Cast this Magic!</a>
+                    <p></p>
+                    <div class="card-footer bg-transparent border-success">
+                        <small>tags:{{ i.tags.all|join:"," }}</small>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+ 
+            <div class="card" style="width: 18rem;">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h1 class="card-header">(☉_☉) (☉_☉) (☉_☉) No Article Found in Database  (☉_☉) (☉_☉) (☉_☉) (☉_☉) (☉_☉)</h1>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 
-            <ol>
-                {% for i in tasks %}
-                    <li>
-                        <a href="{% url "todo:task_retrieve" pk=i.pk %}">{{ i.title }}</a> belongs to: {{ i.project }} , with status: {{ i.project.get_status_display }}
-                    {% empty %}
-                        <h1>(☉_☉) (☉_☉) (☉_☉) No Article Found in Database  (☉_☉) (☉_☉) (☉_☉) (☉_☉) (☉_☉)</h1>
-                    </li>
-                {% endfor %}
  
 
-            </ol>
 
-        {% endblock %}
+    {% comment "" %}
+            <ol>
+                {% for i in tasks %}
+                <li>
+                    <a href="{% url "todo:task_retrieve" pk=i.pk %}">{{ i.title }}</a> belongs to: {{ i.project }} , with status: {{ i.project.get_status_display }}
+                    {% empty %}
+                    <h1>(☉_☉) (☉_☉) (☉_☉) No Article Found in Database  (☉_☉) (☉_☉) (☉_☉) (☉_☉) (☉_☉)</h1>
+                </li>
+                {% endfor %}
+                
+                
+            </ol>
+    {% endcomment %}
+ 
+{% endblock %}

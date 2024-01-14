@@ -28,11 +28,22 @@ class Tag(models.Model):
 
 
 class Task(models.Model):
+    class Status(models.TextChoices):
+        TODO = "T", "Todo"
+        DOING = "D", "Doing"
+        WAITING = "W", "Waiting"
+        FINISH = "F", "Finish"
+
     title = models.CharField(max_length=255)
     content = models.TextField()
-    is_finish = models.BooleanField(default=False)
+    # is_finish = models.BooleanField(default=False)
     project = models.ForeignKey(Project, on_delete=models.PROTECT, related_name="tasks")
     tags = models.ManyToManyField("Tag", blank=True, related_name="projects")
+    status = models.CharField(
+        max_length=1,
+        choices=Status.choices,
+        default=Status.TODO,
+    )
 
     def __str__(self):
         return self.content
